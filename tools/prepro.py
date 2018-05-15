@@ -68,7 +68,7 @@ def build_vocab(refer, params):
   vocab = good_words
 
   # add category words
-  category_names = refer.Cats.values() + ['__background__']
+  category_names = list(refer.Cats.values()) + ['__background__']
   for cat_name in category_names:
     for wd in cat_name.split():
       if wd not in word2count or word2count[wd] <= count_thr:
@@ -233,7 +233,7 @@ def main(params):
     if params['dataset'] in ['refcoco', 'refclef', 'refcoco+']:
       params['max_length'] = 10
       params['topK'] = 50
-    elif params['dataset'] in ['refcocog']:
+    elif params['dataset'] in ['refcocog', 'sunspot']:
       params['max_length'] = 20
       params['topK'] = 50
     else:
