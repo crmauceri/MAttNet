@@ -48,10 +48,13 @@ def main(args):
   # Image Directory
   params = vars(args)
   dataset_splitBy = params['dataset'] + '_' + params['splitBy']
-  if 'coco' or 'combined' in dataset_splitBy:
+
+  if 'coco' in dataset_splitBy  or 'combined' in dataset_splitBy:
     IMAGE_DIR = 'data/images/mscoco/images/train2014'
   elif 'clef' in dataset_splitBy:
     IMAGE_DIR = 'data/images/saiapr_tc-12'
+  elif 'sunspot' in dataset_splitBy:
+    IMAGE_DIR = 'data/images/SUNRGBD'
   else:
     print('No image directory prepared for ', args.dataset)
     sys.exit(0)
@@ -82,7 +85,11 @@ def main(args):
     img_path = osp.join(IMAGE_DIR, file_name)
 
     # predict
-    scores, boxes = mrcn.predict(img_path)
+    try:
+    	scores, boxes = mrcn.predict(img_path)
+    except:
+        print('Error on {}'.format(img_path))
+        sys.exit(0)
 
     # get cls_to_dets, class_name -> [xyxysc] (n, 5)
     cls_to_dets, num_dets = cls_to_detections(scores, boxes, imdb, args.nms_thresh, args.conf_thresh)

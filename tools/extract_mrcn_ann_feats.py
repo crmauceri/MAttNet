@@ -80,10 +80,12 @@ def main(args):
     os.makedirs(osp.join('cache/feats/', dataset_splitBy))
 
   # Image Directory
-  if 'coco' or 'combined' in dataset_splitBy:
+  if 'coco' in dataset_splitBy  or 'combined' in dataset_splitBy:
     IMAGE_DIR = 'data/images/mscoco/images/train2014'
   elif 'clef' in dataset_splitBy:
     IMAGE_DIR = 'data/images/saiapr_tc-12'
+  elif 'sunspot' in dataset_splitBy:
+    IMAGE_DIR = 'data/images/SUNRGBD'
   else:
     print('No image directory prepared for ', args.dataset)
     sys.exit(0)
