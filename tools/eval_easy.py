@@ -39,10 +39,11 @@ def evaluate(params):
   loader = GtMRCNLoader(data_h5=data_h5, data_json=data_json)
 
   # load mode info
-  model_prefix = osp.join('output', params['dataset_splitBy'], params['id'])
+  model_prefix = osp.join('output', params['model'], params['id'])
   infos = json.load(open(model_prefix+'.json'))
   model_opt = infos['opt']
   model_path = model_prefix + '.pth'
+  print('Loading model: {}'.format(model_prefix))
   model = load_model(model_path, model_opt)
 
   # loader's feats
@@ -94,6 +95,7 @@ if __name__ == '__main__':
   parser.add_argument('--dataset', type=str, default='refcoco', help='dataset name: refclef, refcoco, refcoco+, refcocog')
   parser.add_argument('--splitBy', type=str, default='unc', help='splitBy: unc, google, berkeley')
   parser.add_argument('--split', type=str, default='testA', help='split: testAB or val, etc')
+  parser.add_argument('--model', type=str, default='refcoco_unc', help='trained model name')
   parser.add_argument('--id', type=str, default='0', help='model id name')
   parser.add_argument('--num_sents', type=int, default=-1, help='how many sentences to use when periodically evaluating the loss? (-1=all)')
   parser.add_argument('--verbose', type=int, default=1, help='if we want to print the testing progress')
