@@ -83,7 +83,7 @@ def eval_attributes(loader, model, split, opt):
 def eval_split(loader, model, crit, split, opt):
   verbose = opt.get('verbose', True)
   num_sents = opt.get('num_sents', -1)
-  assert split != 'train', 'Check the evaluation split. (comment this line if you are evaluating [train])'
+#  assert split != 'train', 'Check the evaluation split. (comment this line if you are evaluating [train])'
 
   # set mode
   model.eval()

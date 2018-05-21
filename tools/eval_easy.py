@@ -52,15 +52,15 @@ def evaluate(params):
   args.net_name = model_opt['net_name']
   args.tag = model_opt['tag']
   args.iters = model_opt['iters']
-  loader.prepare_mrcn(head_feats_dir=osp.join('cache/feats/', model_opt['dataset_splitBy'], 'mrcn', feats_dir), 
+  loader.prepare_mrcn(head_feats_dir=osp.join('cache/feats/', params['dataset_splitBy'], 'mrcn', feats_dir), 
                       args=args) 
-  ann_feats = osp.join('cache/feats', model_opt['dataset_splitBy'], 'mrcn', 
+  ann_feats = osp.join('cache/feats', params['dataset_splitBy'], 'mrcn', 
                        '%s_%s_%s_ann_feats.h5' % (model_opt['net_name'], model_opt['imdb_name'], model_opt['tag']))
   loader.loadFeats({'ann': ann_feats})
 
   # check model_info and params
-  assert model_opt['dataset'] == params['dataset']
-  assert model_opt['splitBy'] == params['splitBy']
+#  assert model_opt['dataset'] == params['dataset']
+#  assert model_opt['splitBy'] == params['splitBy']
 
   # evaluate on the split, 
   # predictions = [{sent_id, sent, gd_ann_id, pred_ann_id, pred_score, sub_attn, loc_attn, weights}]
