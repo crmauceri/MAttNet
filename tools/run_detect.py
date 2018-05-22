@@ -97,7 +97,7 @@ def main(args):
     # make sure num_dets > 0 for this image, otherwise we lower down the conf_thresh
     thresh = args.conf_thresh
     while num_dets == 0:
-      thresh = thresh-0.1
+      thresh = float(thresh)-0.1
       cls_to_dets, num_dets = cls_to_detections(scores, boxes, imdb, args.nms_thresh, thresh)
 
     # add to dets
