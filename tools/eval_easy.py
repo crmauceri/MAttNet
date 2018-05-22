@@ -61,8 +61,8 @@ def evaluate(params):
     loader.loadFeats({'ann': ann_feats})
 
     # check model_info and params
-    assert model_opt['dataset'] == params['dataset']
-    assert model_opt['splitBy'] == params['splitBy']
+#    assert model_opt['dataset'] == params['dataset']
+#    assert model_opt['splitBy'] == params['splitBy']
 
     # evaluate on the split,
     # predictions = [{sent_id, sent, gd_ann_id, pred_ann_id, pred_score, sub_attn, loc_attn, weights}]
